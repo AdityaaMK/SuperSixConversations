@@ -22,8 +22,6 @@ for i in range(1, sheet.nrows):
 
     if len(sheet.cell_value(i, 1)) > 0:
         resident_i["ra_email"] = sheet.cell_value(i, 1)
-    else:
-        resident_i["ra_email"] = "akumar773@gatech.edu"
 
     resident_i["name"] = sheet.cell_value(i, 2)
     resident_i["building"] = sheet.cell_value(i, 3)

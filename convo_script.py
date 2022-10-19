@@ -1,5 +1,3 @@
-
-
 # 3rd party libraries
 from general_ids import *
 from east_ids import *
@@ -9,32 +7,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium import webdriver
 import chromedriver_binary
-# from chromedriver_py import binary_path
-# from service import Service
 import traceback
 
-
-# TODO  Change which link you are
-is_nav = False
-want_email = True
-
-# data files
-
-
 # global vars and constants
+want_email = True
 previous = None
-EXTIME = 3
-
-# NAV/BSH link is broken
-nav_link = 'https://gatech.co1.qualtrics.com/jfe/form/SV_4U8wGXJRFOMekfk'
-# east campus 2022-2023
-east_link = "https://gatech.co1.qualtrics.com/jfe/form/SV_41GOp8ucrriiEiW"
-
-link = None
-if is_nav:
-    link = nav_link
-else:
-    link = east_link
+EXTIME = 10
+link = "https://gatech.co1.qualtrics.com/jfe/form/SV_41GOp8ucrriiEiW"
 
 
 def next_page():
@@ -45,7 +24,6 @@ def next_page():
 
 
 def wait_for_page():
-
     body = WebDriverWait(browser, EXTIME).until(
         EC.visibility_of_all_elements_located((By.ID, "SurveyEngineBody")))
     if previous != None:
@@ -73,9 +51,6 @@ def wait_type(toTypeTo, message):
     previous = temp
 
 
-# service_object = Service(binary_path)
-# browser = webdriver.Chrome(executable_path=binary_path)
-
 browser = webdriver.Chrome()
 
 
@@ -102,9 +77,6 @@ def main():
 
             if want_email:
                 email = wait_type(ids['ra_email'], resident['ra_email'])
-
-            if is_nav:
-                next_page()
 
             res_name = wait_type(ids['resident'], resident['name'])
             b = wait_click(buildings[resident['building']])
